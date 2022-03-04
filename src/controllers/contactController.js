@@ -35,3 +35,26 @@ exports.editIndex = async (req, res) => {
 
     res.render('contact', {contact})
 }
+
+exports.edit = async (request, response) => {
+    try {
+        if(!req.params.id) return res.render('404')
+        
+        const contact = new Contact(request.body)
+        await contact.edit(request.params.id)
+    
+        if (contact.errors.length > 0) {
+            req.flash('errors', contact.errors)
+            req.session.save(() => {
+              res.redirect('back')
+              return
+            })
+        }
+    
+        req.flash('succes', 'Contact edited with success')
+        req.session.save(() => res,redirect(`/contact/index/${contact.contact._id}`))
+        return
+    } catch(e) {
+        response.render('404')
+    }
+}

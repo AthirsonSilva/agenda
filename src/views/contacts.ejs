@@ -8,8 +8,11 @@
       <p class="text-center lead">Create or edit your contacts below</p>
 
       <%- include('includes/messages.ejs') %>
-
+      <% if(contact._id) { %>
+      <form action="/contact/edit/<% contato._id %>" method="post">
+        <% } else { %>
       <form action="/contact/register" method="post">
+        <% } %>
         <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             <div class="form-group">
               <label>Name</label>
@@ -34,4 +37,4 @@
     <div class="col-lg-2"></div>
   </div>
 </div>
-<%- include('includes/footer') %>
+<%- include('includes/footer') %a>
