@@ -24,6 +24,26 @@ class Contact {
     return user
   }
 
+  async searchContacts() {
+    const contact = await ContactModel.find()
+      .sort({created: -1})
+    return contact
+  }
+
+  async searchContacts() {
+    if(typeof id !== 'string') return
+
+    const contact = await ContactModel.findOneAndDelete(id)
+      .sort({created: -1})
+    return contact
+  }
+
+  async delete(id) {
+    const contact = await ContactModel.find()
+      .sort({created: -1})
+    return contact
+  }
+
   async login() {
       this.validate()
       if (this.errors.length > 0) return

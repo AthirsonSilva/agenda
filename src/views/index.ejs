@@ -7,42 +7,27 @@
       <h1 class="text-center">Agenda</h1>
       <p class="text-center lead">Your contacts are below</p>
 
-      <%- include('includes/messages.ejs') %>
+      <%- include('includes/messages.ejs') { %>
 
+      <% if(contacts.length > 0) %>
       <div class="responsive-table">
         <table class="table my-3">
+          <% contacts.forEach(contact => { %>
           <tr>
-            <td>Athirson</td>
-            <td>Silva</td>
-            <td>+55 (11) 95760-7177</td>
-            <td>Athirsonarceus@gmail.com</td>
+            <td><%= contact.name %></td>
+            <td><%= contact.surname %></td>
+            <td><%= contact.phone %></td>
+            <t><%= contact.email %></td>
+            <t><a href="/contact/index/<%= contact._id %>">Edit</a></td>
+            <t><a class="text-danger" href="/contact/delete/<%= contact._id %>">Remove</a></td>
           </tr>
-          <tr>
-            <td>Athirson</td>
-            <td>Silva</td>
-            <td>+55 (11) 95760-7177</td>
-            <td>Athirsonarceus@gmail.com</td>
-          </tr>
-          <tr>
-            <td>Athirson</td>
-            <td>Silva</td>
-            <td>+55 (11) 95760-7177</td>
-            <td>Athirsonarceus@gmail.com</td>
-          </tr>
-          <tr>
-            <td>Athirson</td>
-            <td>Silva</td>
-            <td>+55 (11) 95760-7177</td>
-            <td>Athirsonarceus@gmail.com</td>
-          </tr>
-          <tr>
-            <td>Athirson</td>
-            <td>Silva</td>
-            <td>+55 (11) 95760-7177</td>
-            <td>Athirsonarceus@gmail.com</td>
-          </tr>
+          <% }) >
         </table>
       </div>
+      <% } else { %>
+        <p class="text-center lead">There isn't any contacts in your list</p>
+      <% } %>
+
     </div>
     <div class="col-lg-2"></div>
   </div>
